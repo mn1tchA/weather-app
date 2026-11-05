@@ -1,0 +1,412 @@
+:root {
+  --ink: #0d2438;
+  --sea: #2f6f8f;
+  --mist: #e3ecf1;
+  --paper: #f7fafb;
+  --sun: #f2a93b;
+  --rain: #5d7686;
+  --danger: #b3362b;
+  --line: #c9d8e0;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Instrument Sans", "Segoe UI", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--mist);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.page {
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--display);
+  margin: 0;
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: 2.25rem 0 0.75rem;
+}
+
+h3 {
+  font-size: 1.1rem;
+}
+
+.lede {
+  margin: 0.25rem 0 1.25rem;
+  color: var(--rain);
+  max-width: 40rem;
+}
+
+.muted {
+  color: var(--rain);
+  margin: 0.25rem 0 0.75rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---- controls ---- */
+input,
+button {
+  font: inherit;
+}
+
+input {
+  padding: 0.65rem 0.8rem;
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--ink);
+  min-width: 0;
+}
+
+button {
+  padding: 0.65rem 1.1rem;
+  border: 0;
+  border-radius: 6px;
+  background: var(--ink);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button.secondary {
+  background: #fff;
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+}
+
+button.danger {
+  background: #fff;
+  color: var(--danger);
+  border: 1.5px solid var(--danger);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.link-btn {
+  background: none;
+  color: var(--sea);
+  padding: 0.25rem 0;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+:focus-visible {
+  outline: 3px solid var(--sun);
+  outline-offset: 2px;
+}
+
+.search {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.search input {
+  flex: 1 1 18rem;
+  font-size: 1.05rem;
+}
+
+.error {
+  margin: 0.9rem 0 0;
+  padding: 0.7rem 0.9rem;
+  background: #fbeceb;
+  border-left: 4px solid var(--danger);
+  color: #7a1f17;
+  border-radius: 0 6px 6px 0;
+}
+
+.empty {
+  margin: 2rem 0;
+  color: var(--rain);
+}
+
+/* ---- current weather ---- */
+.current {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-top: 1.75rem;
+  padding: 1.75rem;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 14px;
+}
+
+.place {
+  margin: 0;
+  color: #b9d1de;
+  max-width: 28rem;
+}
+
+.temp {
+  margin: 0.25rem 0 0;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(5rem, 16vw, 8.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+
+.deg {
+  font-size: 0.35em;
+  vertical-align: top;
+  margin-left: 0.1em;
+  color: var(--sun);
+}
+
+.condition {
+  margin: 0.4rem 0 0;
+  font-size: 1.25rem;
+}
+
+.current-side {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.big-icon {
+  font-size: clamp(3.5rem, 10vw, 5.5rem);
+  line-height: 1;
+}
+
+.facts {
+  margin: 0;
+  display: grid;
+  gap: 0.35rem;
+  text-align: right;
+}
+
+.facts div {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.facts dt {
+  color: #b9d1de;
+}
+
+.facts dd {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* ---- forecast ---- */
+.forecast {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: 0.75rem;
+}
+
+.day {
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  padding: 0.9rem;
+}
+
+.day p {
+  margin: 0;
+}
+
+.day-name {
+  font-weight: 600;
+}
+
+.day-date {
+  color: var(--rain);
+  font-size: 0.9rem;
+}
+
+.day-icon {
+  display: block;
+  font-size: 2rem;
+  margin: 0.4rem 0 0.1rem;
+}
+
+.day-desc {
+  font-size: 0.9rem;
+  min-height: 2.6em;
+}
+
+.range {
+  position: relative;
+  height: 6px;
+  margin: 0.6rem 0;
+  background: var(--mist);
+  border-radius: 3px;
+}
+
+.range-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: var(--sun);
+  border-radius: 3px;
+}
+
+.day-temps span {
+  color: var(--rain);
+}
+
+.day-rain {
+  color: var(--sea);
+  font-size: 0.85rem;
+  min-height: 1.3em;
+}
+
+/* ---- saved records ---- */
+.save-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.save-form label {
+  display: grid;
+  gap: 0.25rem;
+  font-weight: 500;
+}
+
+.records {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.record {
+  background: var(--paper);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.record-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.record-head .muted {
+  margin: 0.1rem 0 0;
+}
+
+.temps {
+  width: 100%;
+  max-width: 24rem;
+  margin: 0.75rem 0;
+  border-collapse: collapse;
+}
+
+.temps th,
+.temps td {
+  text-align: left;
+  padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.note-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.note-row input {
+  flex: 1 1 12rem;
+}
+
+.extras {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.extras a,
+.exports a {
+  color: var(--sea);
+  font-weight: 500;
+  margin-right: 1rem;
+}
+
+.exports {
+  margin-top: 1.25rem;
+}
+
+footer {
+  margin-top: 3rem;
+  padding-top: 1.25rem;
+  border-top: 1.5px solid var(--line);
+  color: var(--rain);
+  font-size: 0.95rem;
+  max-width: 44rem;
+}
+
+@media (max-width: 560px) {
+  .current {
+    padding: 1.25rem;
+  }
+
+  .current-side {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
+
+  .facts,
+  .facts div {
+    text-align: left;
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
